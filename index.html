@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#f7f7fb" />
+<title>My辞書</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div>
+    <h1>📚 My辞書</h1>
+    <p>自分専用の用語辞典</p>
+  </div>
+  <button id="themeBtn" aria-label="テーマ切替">◐</button>
+</header>
+
+<main>
+  <section id="homeView">
+    <div class="searchWrap">
+      <input id="search" type="search" placeholder="単語・読み・本文を検索" autocomplete="off">
+    </div>
+    <div id="categories" class="chips"></div>
+
+    <div class="toolbar">
+      <select id="sortSelect">
+        <option value="added">登録順</option>
+        <option value="word">五十音・ABC順</option>
+      </select>
+      <label class="favToggle"><input id="favOnly" type="checkbox"> ★ お気に入りのみ</label>
+    </div>
+
+    <div id="count" class="count"></div>
+    <div id="wordList" class="wordList"></div>
+
+    <details class="importBox">
+      <summary>＋ 単語を一括追加 / バックアップ</summary>
+      <p>JSONを選ぶと、この端末に追加保存します。重複IDは更新します。</p>
+      <input id="jsonFile" type="file" accept=".json,application/json">
+      <div class="btnRow">
+        <button id="exportBtn">JSONを書き出す</button>
+        <button id="resetBtn" class="danger">追加データを初期化</button>
+      </div>
+      <pre class="sample">形式例:
+[
+  {
+    "id":"iki",
+    "word":"粋",
+    "reading":"いき",
+    "category":"日本語",
+    "content":"A【用語】..."
+  }
+]</pre>
+    </details>
+  </section>
+
+  <section id="detailView" class="hidden">
+    <button id="backBtn" class="back">← 一覧へ</button>
+    <article class="detailCard">
+      <div class="detailTitleRow">
+        <div>
+          <h2 id="detailWord"></h2>
+          <div id="detailReading" class="reading"></div>
+          <div id="detailCategory" class="categoryBadge"></div>
+        </div>
+        <button id="detailFav" class="favBtn" aria-label="お気に入り">☆</button>
+      </div>
+      <div id="detailContent" class="content"></div>
+    </article>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
