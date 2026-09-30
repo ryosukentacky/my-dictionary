@@ -1,77 +1,265 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<meta name="theme-color" content="#f7f7fb" />
-<title>My辞書</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f6f1e7" />
+  <title>My Books</title>
+  <link rel="stylesheet" href="style.css?v=20260928-completequiz1" />
 </head>
 <body>
-<header>
-  <div>
-    <h1>📚 My辞書</h1>
-    <p>自分専用の用語辞典</p>
-  </div>
-  <button id="themeBtn" aria-label="テーマ切替">◐</button>
-</header>
-
-<main>
-  <section id="homeView">
-    <div class="searchWrap">
-      <input id="search" type="search" placeholder="単語・読み・本文を検索" autocomplete="off">
-    </div>
-    <div id="categories" class="chips"></div>
-
-    <div class="toolbar">
-      <select id="sortSelect">
-        <option value="added">登録順</option>
-        <option value="word">五十音・ABC順</option>
-      </select>
-      <label class="favToggle"><input id="favOnly" type="checkbox"> ★ お気に入りのみ</label>
-    </div>
-
-    <div id="count" class="count"></div>
-    <div id="wordList" class="wordList"></div>
-
-    <details class="importBox">
-      <summary>＋ 単語を一括追加 / バックアップ</summary>
-      <p>JSONを選ぶと、この端末に追加保存します。重複IDは更新します。</p>
-      <input id="jsonFile" type="file" accept=".json,application/json">
-      <div class="btnRow">
-        <button id="exportBtn">JSONを書き出す</button>
-        <button id="resetBtn" class="danger">追加データを初期化</button>
+  <main id="library" class="screen active" aria-label="本棚">
+    <header class="library-header">
+      <div>
+        <p class="eyebrow">MY LIBRARY</p>
+        <h1>本棚</h1>
+        <p class="sub">学んだチャットを、本として読み返す。</p>
       </div>
-      <pre class="sample">形式例:
-[
-  {
-    "id":"iki",
-    "word":"粋",
-    "reading":"いき",
-    "category":"日本語",
-    "content":"A【用語】..."
-  }
-]</pre>
-    </details>
-  </section>
+    </header>
 
-  <section id="detailView" class="hidden">
-    <button id="backBtn" class="back">← 一覧へ</button>
-    <article class="detailCard">
-      <div class="detailTitleRow">
-        <div>
-          <h2 id="detailWord"></h2>
-          <div id="detailReading" class="reading"></div>
-          <div id="detailCategory" class="categoryBadge"></div>
+    <section class="shelf" aria-label="本の一覧">
+      <button class="book-card" type="button"
+        data-book="mindfulness"
+        data-title="不安をなくす究極のマインドフルネス"
+        data-subtitle="4分割理解・記憶シート"
+        data-file="mindfulness.md"
+        aria-label="不安をなくす究極のマインドフルネスを開く">
+        <div class="book-cover cover-green">
+          <span class="book-kicker">4分割理解・記憶シート</span>
+          <strong>不安をなくす<br>究極の<br>マインドフルネス</strong>
+          <span class="book-meta">第1章〜第5章</span>
         </div>
-        <button id="detailFav" class="favBtn" aria-label="お気に入り">☆</button>
-      </div>
-      <div id="detailContent" class="content"></div>
-    </article>
-  </section>
-</main>
+        <div class="book-info">
+          <h2>不安をなくす究極のマインドフルネス</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
 
-<script src="app.js"></script>
+      <button class="book-card" type="button"
+        data-book="structuralism"
+        data-title="寝ながら学べる構造主義"
+        data-subtitle="4分割理解・記憶シート"
+        data-file="structuralism.md"
+        aria-label="寝ながら学べる構造主義を開く">
+        <div class="book-cover cover-navy">
+          <span class="book-kicker">内田樹・4分割理解</span>
+          <strong>寝ながら<br>学べる<br>構造主義</strong>
+          <span class="book-meta">全章・全セクション</span>
+        </div>
+        <div class="book-info">
+          <h2>寝ながら学べる構造主義</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+      <button class="book-card" type="button"
+        data-book="silicon-valley-lifehack"
+        data-title="シリコンバレー式超ライフハック"
+        data-subtitle="HACK別・4分割理解シート"
+        data-file="silicon_valley_lifehack.md"
+        aria-label="シリコンバレー式超ライフハックを開く">
+        <div class="book-cover cover-orange">
+          <span class="book-kicker">HACK別・4分割理解</span>
+          <strong>シリコンバレー式<br>超<br>ライフハック</strong>
+          <span class="book-meta">HACK01〜</span>
+        </div>
+        <div class="book-info">
+          <h2>シリコンバレー式超ライフハック</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+
+      <button class="book-card" type="button"
+        data-book="accounting-internal-control"
+        data-title="経理実務と内部統制"
+        data-subtitle="業務フロー・4分割理解シート"
+        data-file="accounting_internal_control.md"
+        aria-label="経理実務と内部統制を開く">
+        <div class="book-cover cover-brown">
+          <span class="book-kicker">業務フロー・4分割理解</span>
+          <strong>経理実務と<br>内部統制</strong>
+          <span class="book-meta">現金預金・小切手・売上債権ほか</span>
+        </div>
+        <div class="book-info">
+          <h2>経理実務と内部統制</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+
+      <button class="book-card" type="button"
+        data-book="financial-statements-analysis"
+        data-title="財務諸表の読み方・図解分析"
+        data-subtitle="財務3表・4分割理解シート"
+        data-file="financial_statements_analysis.md"
+        aria-label="財務諸表の読み方・図解分析を開く">
+        <div class="book-cover cover-blue">
+          <span class="book-kicker">財務3表・4分割理解</span>
+          <strong>財務諸表の<br>読み方・<br>図解分析</strong>
+          <span class="book-meta">ROE・CS・比較分析ほか</span>
+        </div>
+        <div class="book-info">
+          <h2>財務諸表の読み方・図解分析</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+
+      <button class="book-card" type="button"
+        data-book="seneca-schopenhauer"
+        data-title="人生の短さ・思索・読書"
+        data-subtitle="セネカ＆ショウペンハウエル・4分割理解シート"
+        data-file="seneca_schopenhauer.md"
+        aria-label="人生の短さ・思索・読書を開く">
+        <div class="book-cover cover-purple">
+          <span class="book-kicker">哲学・4分割理解</span>
+          <strong>人生の短さ・<br>思索・<br>読書</strong>
+          <span class="book-meta">セネカ／ショウペンハウエル</span>
+        </div>
+        <div class="book-info">
+          <h2>人生の短さ・思索・読書</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+
+      <button class="book-card" type="button"
+        data-book="smartphone-philosophy"
+        data-title="スマホ時代の哲学"
+        data-subtitle="4分割理解・記憶シート"
+        data-file="smartphone_philosophy.md"
+        aria-label="スマホ時代の哲学を開く">
+        <div class="book-cover cover-teal">
+          <span class="book-kicker">哲学・4分割理解</span>
+          <strong>スマホ時代の<br>哲学</strong>
+          <span class="book-meta">自己完結・孤独・ネガティヴ・ケイパビリティほか</span>
+        </div>
+        <div class="book-info">
+          <h2>スマホ時代の哲学</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+
+      <button class="book-card" type="button"
+        data-book="financial-statements-integrated"
+        data-title="財務3表一体理解法"
+        data-subtitle="PL・BS・CSのつながりを理解する"
+        data-file="financial_statements_integrated.md"
+        aria-label="財務3表一体理解法を開く">
+        <div class="book-cover cover-gold">
+          <span class="book-kicker">会計・4分割理解</span>
+          <strong>財務3表<br>一体理解法</strong>
+          <span class="book-meta">PL・BS・CS／5つのつながり</span>
+        </div>
+        <div class="book-info">
+          <h2>財務3表一体理解法</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+
+      <button class="book-card" type="button"
+        data-book="finance-as-a-tool"
+        data-title="道具としてのファイナンス"
+        data-subtitle="企業価値・投資理論・4分割理解シート"
+        data-file="finance_as_a_tool.md"
+        aria-label="道具としてのファイナンスを開く">
+        <div class="book-cover cover-red">
+          <span class="book-kicker">ファイナンス・4分割理解</span>
+          <strong>道具としての<br>ファイナンス</strong>
+          <span class="book-meta">現在価値・NPV・IRR・CAPMほか</span>
+        </div>
+        <div class="book-info">
+          <h2>道具としてのファイナンス</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+
+      <button class="book-card" type="button"
+        data-book="mos-excel-365"
+        data-title="MOS Excel 365 学習ノート"
+        data-subtitle="操作手順・4分割理解シート"
+        data-file="mos_excel_365.md"
+        aria-label="MOS Excel 365 学習ノートを開く">
+        <div class="book-cover cover-emerald">
+          <span class="book-kicker">Excel・4分割理解</span>
+          <strong>MOS<br>Excel 365<br>学習ノート</strong>
+          <span class="book-meta">ブック管理・セル操作・関数ほか</span>
+        </div>
+        <div class="book-info">
+          <h2>MOS Excel 365 学習ノート</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+
+      <button class="book-card" type="button"
+        data-book="listen"
+        data-title="LISTEN――知性豊かで創造力がある人になれる"
+        data-subtitle="聴く力・4分割理解シート"
+        data-file="listen.md"
+        aria-label="LISTEN――知性豊かで創造力がある人になれるを開く">
+        <div class="book-cover cover-indigo">
+          <span class="book-kicker">コミュニケーション・4分割理解</span>
+          <strong>LISTEN<br>聴く力</strong>
+          <span class="book-meta">全18章</span>
+        </div>
+        <div class="book-info">
+          <h2>LISTEN――知性豊かで創造力がある人になれる</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+
+      <button class="book-card" type="button"
+        data-book="financial-system-and-banking"
+        data-title="現代の金融入門【新版】"
+        data-subtitle="池尾和人・金融論・4分割理解シート"
+        data-file="financial_system_and_banking.md"
+        aria-label="現代の金融入門【新版】を開く">
+        <div class="book-cover cover-slate">
+          <span class="book-kicker">金融論・4分割理解</span>
+          <strong>現代の金融入門<br>【新版】</strong>
+          <span class="book-meta">金融取引・銀行・金融政策・バブル・企業統治</span>
+        </div>
+        <div class="book-info">
+          <h2>現代の金融入門【新版】</h2>
+          <p>タップしてチャット内容を読む</p>
+        </div>
+      </button>
+
+    </section>
+  </main>
+
+  <main id="reader" class="screen" aria-label="読書画面">
+    <header class="reader-header">
+      <button id="backBtn" class="icon-btn" type="button" aria-label="本棚に戻る">←</button>
+      <div class="reader-title-wrap">
+        <p id="readerTitle" class="reader-title"></p>
+        <p id="readerSubtitle" class="reader-subtitle"></p>
+      </div>
+      <button id="searchBtn" class="icon-btn" type="button" aria-label="本文を検索">⌕</button>
+    </header>
+
+    <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+
+    <section id="searchPanel" class="search-panel" hidden>
+      <input id="searchInput" type="search" placeholder="本の中を検索" autocomplete="off" />
+      <span id="searchCount"></span>
+    </section>
+
+    <article id="chat" class="chat" aria-live="polite">
+      <div class="loading">本を開いています…</div>
+    </article>
+
+    <button id="topBtn" class="top-btn" type="button" aria-label="一番上へ戻る">↑</button>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+  <script src="app.js?v=20260928-completequiz1"></script>
 </body>
 </html>
